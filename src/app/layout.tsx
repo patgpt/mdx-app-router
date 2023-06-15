@@ -1,3 +1,4 @@
+import { MDXProvider } from '@mdx-js/react'
 import './globals.css'
 import { Inter } from 'next/font/google'
 
@@ -15,7 +16,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <MDXProvider components={{
+        // Allows customizing built-in components, e.g. to add styling. DEMO:
+        // 
+        h1: ({ children }) => <h1 className='font-thin text-blue-600' >{children}</h1>,
+      }}>
+        <body className={inter.className}>{children}</body>
+      </MDXProvider>
     </html>
   )
 }
